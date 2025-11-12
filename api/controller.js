@@ -10,7 +10,9 @@ exports.calculate = function(req, res) {
     res.json({ error: err.message });
   });
 
-  // TODO: Add operator
+  // Define arithmetic operations
+  // Supported operations: add, subtract, multiply, divide, power (exponentiation)
+  // All operations accept two operands and return a numeric result
   var operations = {
     'add':      function(a, b) { return Number(a) + Number(b) },
     'subtract': function(a, b) { return a - b },

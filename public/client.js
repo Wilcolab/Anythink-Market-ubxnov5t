@@ -19,7 +19,8 @@ var operation = null;
 function calculate(operand1, operand2, operation) {
     var uri = location.origin + "/arithmetic";
 
-    // TODO: Add operator
+    // Map calculator operations to backend API operations
+    // Supported operations: add, subtract, multiply, divide, power
     switch (operation) {
         case '+':
             uri += "?operation=add";
@@ -135,13 +136,15 @@ function equalPressed() {
     calculate(operand1, operand2, operation);
 }
 
-// TODO: Add key press logics
+// Handle keyboard input for calculator operations
+// Supports: numbers (0-9), decimal point (.), arithmetic operators (+, -, *, /, ^), and equals (=)
 document.addEventListener('keypress', (event) => {
     if (event.key.match(/^\d+$/)) {
         numberPressed(event.key);
     } else if (event.key == '.') {
         decimalPressed();
     } else if (event.key.match(/^[-*+/^]$/)) {
+        // Power operator (^) is supported for exponentiation
         operationPressed(event.key);
     } else if (event.key == '=') {
         equalPressed();
