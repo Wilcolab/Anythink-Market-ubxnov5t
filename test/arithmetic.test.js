@@ -96,6 +96,49 @@ describe('Arithmetic', function () {
 // TODO: Challenge #1
  
 
+    describe('Power', function () {
+        it('raises 2 to the power of 3', function (done) {
+            request.get('/arithmetic?operation=power&operand1=2&operand2=3')
+                .expect(200)
+                .end(function (err, res) {
+                    expect(res.body).to.eql({ result: 8 });
+                    done();
+                });
+        });
+        it('raises 5 to the power of 2', function (done) {
+            request.get('/arithmetic?operation=power&operand1=5&operand2=2')
+                .expect(200)
+                .end(function (err, res) {
+                    expect(res.body).to.eql({ result: 25 });
+                    done();
+                });
+        });
+        it('raises a number to the power of 0', function (done) {
+            request.get('/arithmetic?operation=power&operand1=42&operand2=0')
+                .expect(200)
+                .end(function (err, res) {
+                    expect(res.body).to.eql({ result: 1 });
+                    done();
+                });
+        });
+        it('raises a number to a negative power', function (done) {
+            request.get('/arithmetic?operation=power&operand1=2&operand2=-1')
+                .expect(200)
+                .end(function (err, res) {
+                    expect(res.body).to.eql({ result: 0.5 });
+                    done();
+                });
+        });
+        it('raises a number to a fractional power', function (done) {
+            request.get('/arithmetic?operation=power&operand1=4&operand2=0.5')
+                .expect(200)
+                .end(function (err, res) {
+                    expect(res.body).to.eql({ result: 2 });
+                    done();
+                });
+        });
+    });
+
     describe('Multiplication', function () {
         it('multiplies two positive integers', function (done) {
             request.get('/arithmetic?operation=multiply&operand1=21&operand2=2')
